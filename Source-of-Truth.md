@@ -196,7 +196,85 @@ This section captures the eventing backbone that enforces domain boundaries with
 | AWS | SNS/SQS + ECS/EKS |
 | Portable options | Kafka; NATS JetStream; BullMQ (local dev) |
 
-## 8. Enforcement
+## 8. PRD-Derived Product Context (Gaps Filled)
+This section captures product-level requirements that are missing from the domain/source-of-truth document.
+
+### 8.1 Product Overview
+ATY is a blockchain-enabled agricultural services platform where users rent virtual farm plots, redeem ATY utility tokens for managed farming, receive physical crop output, or sell harvests to verified buyers. Tokens function as prepaid service credits only (no yield/staking).
+
+### 8.2 Objectives and Success Metrics
+| Objective | Metric |
+| --- | --- |
+| Growth | 1,000 active renters within 6 months of MVP launch |
+| Service reliability | 85%+ service redemption completion rate |
+| Delivery reliability | 95% delivery success rate |
+| Supply growth | 10,000 acres onboarded by end of Year 2 |
+| Operational accuracy | <2% ops error rate (allocation/delivery mismatch/double-booking) |
+| Token utilization | 10–15% redemption-to-service ratio (seasonal average) |
+
+### 8.3 Scope (Phase 1)
+| In Scope | Out of Scope |
+| --- | --- |
+| User onboarding (renter/landowner/buyer); token redemption; land allocation; farming ops; crop delivery; buyer marketplace; blockchain ledger for service tokens; mobile + web interfaces; multi-party communication | User-generated farming strategies; DAO governance; staking/yield mechanics; multi-country expansion; retail consumer delivery |
+
+### 8.4 Personas
+| Persona | Needs | Pain Points |
+| --- | --- | --- |
+| Renters | Easy farming, passive crop output, verified buyers | No land/time, fear of scams |
+| Landowners | Monetize idle land, reliable renters | No structured rental marketplace |
+| Buyers | Bulk supply, consistent quality | Supply instability, inconsistent delivery |
+| ATY Ops Team | Tracking, communication, verification tools | Operational coordination complexity |
+
+### 8.5 Feature Requirements (Product Level)
+| Feature | Key Requirements | Success Criteria |
+| --- | --- | --- |
+| Token integration | Wallet creation, balance/history, smart-contract redemption, off-chain ledger; no staking/yield | Redemption <5s; zero service-token mismatch; full audit trail |
+| Service packages | UI selection; smart-contract verify; backend allocation; activation confirmation | Activation after verified redemption |
+| Land allocation engine | Metadata DB; allocation rules; conflict prevention; landowner availability | <1% conflicts; 100% traceability |
+| Farm management | Task scheduling; status tracking; input usage; media verification; weather alerts | Operational traceability |
+| Logistics | Delivery order; tracking; routing; QR/OTP verification; claims workflow | 95% on-time; confirm within 30 mins |
+| Buyer marketplace | Buyer KYC; price discovery; direct settlement; grading | Verified buyer liquidity |
+| Landowner matching | Onboarding; verification; matching algorithm; earnings dashboard | Stable land supply |
+| Reporting dashboard | Growth timeline; on-chain logs; IoT readings (Phase 2); transparency reports | Trust and compliance visibility |
+
+### 8.6 Token Economics (Product Constraints)
+| Area | Requirement |
+| --- | --- |
+| Supply | 1,000,000,000 ATY; no inflation in Phase 1 |
+| Usage ratio | 90% circulating liquidity; 10% seasonal utility redemption |
+| Lock/burn | Redeemed tokens may be temporarily locked; burn optional later |
+| Pricing anchor | Pegged to ops/logistics/seasonality costs |
+| Liquidity | ≥20% reserved for liquidity pools and market making |
+
+### 8.7 Technical Requirements (Product Level)
+| Layer | Requirement |
+| --- | --- |
+| Blockchain | ERC-20 or equivalent; redemption smart contracts; oracle integration |
+| Backend | Node.js; AWS-based services; allocation/ops/logistics/marketplace engines |
+| Mobile | iOS + Android wallet, redemption, crop tracking, buyer offers |
+| Security | KYC/AML; encryption; multisig admin controls; smart contract audits |
+
+### 8.8 Non-Functional Requirements
+| Category | Requirement |
+| --- | --- |
+| Performance | Redemption <5s; dashboard updates <= 1s; 50k concurrent users |
+| Availability | 99.5% uptime; redundant clusters |
+| Scalability | Multi-region land clusters; 1M+ token tx/year |
+| Compliance | Utility-only token model; CBN/SEC Nigeria compliance |
+
+### 8.9 Dependencies and Risks
+| Dependencies | Risks and Mitigations |
+| --- | --- |
+| Farmland partnerships; logistics providers; smart contract auditor; IoT vendor; government programs | Crop failure → insurance + multi-region farms; token misuse → smart contract limits; regulatory pressure → utility-only model; delivery failures → SLA-based logistics; land disputes → verified contracts |
+
+### 8.10 Launch Plan
+| Phase | Timeline | Targets |
+| --- | --- | --- |
+| Phase 1 — MVP | Q1 2026 | 100 acres; 1,000 user plots; basic marketplace; logistics network |
+| Phase 2 — Scale | Q2–Q4 2026 | IoT sensors; advanced marketplace; 2,500 landlords |
+| Phase 3 — National | 2027 | Multi-region coverage; retail processors onboarded |
+
+## 9. Enforcement
 These decisions must be enforced through:
 - Database constraints.
 - Code ownership boundaries.
@@ -204,6 +282,6 @@ These decisions must be enforced through:
 - Architecture reviews.
 - Any violation of these boundaries is considered a system design defect, not a feature shortcut.
 
-## 9. Status
+## 10. Status
 - Document Status: READY FOR SIGN-OFF.
 - Applies To: MVP -> National Scale.
