@@ -1,0 +1,35 @@
+{
+  "name": "aty-backend",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "start": "node -r ts-node/register -r tsconfig-paths/register apps/api/src/main.ts",
+    "start:api": "node -r ts-node/register -r tsconfig-paths/register apps/api/src/main.ts",
+    "start:workers": "node -r ts-node/register -r tsconfig-paths/register apps/workers/src/main.ts",
+    "build": "nest build",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.ts\" \"**/*.md\""
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.4.7",
+    "@nestjs/core": "^10.4.7",
+    "@nestjs/platform-express": "^10.4.7",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.16",
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.2"
+  }
+}
