@@ -1,0 +1,13 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testRegex": ".*\.e2e-spec\.ts$",
+  "transform": {
+    "^.+\.ts$": "ts-jest"
+  },
+  "collectCoverageFrom": ["apps/**/*.ts", "libs/**/*.ts"],
+  "testEnvironment": "node",
+  "moduleNameMapper": {
+    "^@aty/(.*)$": "<rootDir>/libs/$1/src"
+  }
+}
